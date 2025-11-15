@@ -15,9 +15,9 @@ print(f"[Attacker] C->S: {d}")
 
 t = d.replace("42", str(random.randint(10, 99)))
 s.sendall(t.encode())
-r = s.recv(4096)
-c.sendall(r)
+r = s.recv(4096).decode(errors='replace')
+c.sendall(r.encode())
 
 print(f"[Attacker] Tampered: {t}")
-print(f"[Attacker] S->C: {r.decode(errors='replace')}")
+print(f"[Attacker] S->C: {r}")
 for x in (c, s, ls): x.close()
