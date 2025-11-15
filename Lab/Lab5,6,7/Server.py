@@ -11,11 +11,12 @@ print("[Server] connection from ('127.0.0.1', 9001)")
 while True:
     try: 
         c, _ = s.accept()
-        d = c.recv(4096)
+        d = c.recv(4096).decode(errors='replace')
 
-        print(f"[Server] received: {d.decode(errors='replace')}")
+        print(f"[Server] received: {d}")
         print("[Server] sent ACK")
 
         c.sendall(b"ACK")
         c.close()
+
     except TimeoutError: pass
