@@ -11,5 +11,5 @@ with socket.create_connection(("127.0.0.1", 4443)) as s, ctx.wrap_socket(s, serv
 
     print("[+] TLS connected")
     print("[C] Sending:", MESSAGE)
-
     print("[C] Received from server: Secure reply:", c.recv(1024).decode())
+
